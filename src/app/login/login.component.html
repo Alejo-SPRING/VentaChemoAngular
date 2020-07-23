@@ -1,0 +1,24 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-md-4">
+    <div class="card">
+      <div class="card-header bg-dark">
+        <h3 class="card-title text-light">Ingresar</h3>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="login()">
+          <div class="row">
+            <div class="col-12">
+              <label>Correo o nombre</label>
+              <input type="text" name="correo" [(ngModel)]="correo" class="form-control">
+            </div>
+            <div class="col-12">
+              <label>Contraseña</label>
+              <input type="password" name="pass" [(ngModel)]="pass" class="form-control">
+              <button role="button" class="btn btn-block btn-primary mt-3">Ingresar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="row mb-5">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header bg-dark">
+        <h3 class="text-center card-title text-light mb-3">Clientes registrados</h3>
+        <button type="button" class="btn btn-primary" routerLink = "/cliente/form">Crear cliente</button>
+      </div>
+      <div class="card-body">
+        <div class="card-columns" *ngIf="clientes.length>0 else elseBlock">
+          <div class="card text-white bg-primary mb-3" style="max-width: 18rem;" *ngFor="let usuario of clientes">
+            <div class="card-header">{{usuario.usuarioDato.nombre + " " + usuario.usuarioDato.apellido}}</div>
+            <div class="card-body">
+              <p>{{usuario.correo}}</p>
+              <h5 class="card-title">{{usuario.usuarioDato.fechaNacimiento}}</h5>
+              <p *ngFor="let rol of usuario.usuarioHasRolList">{{rol.authority}}</p>
+              <div class="btn-group">
+                <button class="btn btn-info" [routerLink]="['/cliente/form/', usuario.id]">Actualizar</button>
+                <button class="btn btn-danger" (click)="delete(usuario)">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #elseBlock>
+            <p class="text-secondary display-4 text-center">¡No hay datos!</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

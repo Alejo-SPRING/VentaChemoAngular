@@ -1,0 +1,98 @@
+<div class="card">
+  <div class="card-header bg-dark">
+    <h3 class="card-title text-light">{{titulo}}</h3>
+  </div>
+  <div class="card-body">
+    <form #formCliente="ngForm">
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" [(ngModel)]="cliente.usuarioLogin.usuarioDato.nombre" required minlength="4" name="nombre" #nombre="ngModel">
+          <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <div *ngIf="nombre.errors.required" class="text-danger">
+                  ¡Ingresa un nombre!
+              </div>
+              <div *ngIf="nombre.errors.minlength" class="text-danger">
+                ¡El apellido debe tener minimo 4 caracteres!
+              </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <label for="apellido">Apellido</label>
+          <input type="text" class="form-control" [(ngModel)]="cliente.usuarioLogin.usuarioDato.apellido" name="apellido" required minlength="4" #apellido="ngModel">
+          <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+              <div *ngIf="apellido.errors.required" class="text-danger">
+                ¡Ingresa un apellido!
+              </div>
+              <div *ngIf="apellido.errors.minlength" class="text-danger">
+                ¡El apellido debe tener minimo 4 caracteres!
+              </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <label for="fechaNacimiento">Fecha de nacimiento</label>
+          <input type="date" class="form-control" [(ngModel)]="cliente.usuarioLogin.usuarioDato.fechaNacimiento" name="fechaNacimiento" #fechaN="ngModel" required>
+          <div *ngIf="fechaN.invalid && (fechaN.dirty || fechaN.touched)">
+            <div *ngIf="fechaN.errors.required" class="text-danger">
+                ¡Selecciona una fecha!
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <label for="correo">Correo</label>
+          <input type="email" class="form-control" [(ngModel)]="cliente.usuarioLogin.correo" name="correo" #correo="ngModel" required minlength="10">
+          <div *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+            <div *ngIf="correo.errors.required" class="text-danger">
+              ¡Ingresa un correo!
+            </div>
+            <div *ngIf="correo.errors.minlength" class="text-danger">
+              ¡Ingresa minimo 10 caracteres!
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <label for="pass">Contraseña</label>
+          <input type="password" class="form-control" autocomplete="off" [(ngModel)]="cliente.usuarioLogin.pass" name="pass" #pass="ngModel" required minlength="7">
+          <div *ngIf="pass.invalid && (pass.dirty || pass.touched)">
+            <div *ngIf="pass.errors.required" class="text-danger">
+              ¡Ingresa una contraseña!
+            </div>
+            <div *ngIf="pass.errors.minlength" class="text-danger">
+              ¡Ingresa minimo 7 caracteres!
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <label for="Vpass">Verificar contraseña</label>
+          <input type="password" class="form-control" autocomplete="off" name="passV" [(ngModel)]="passV" #passVE="ngModel" required minlength="7">
+          <div *ngIf="passVE.invalid && (passVE.dirty || passVE.touched)">
+            <div *ngIf="passVE.errors.required" class="text-danger">
+              ¡Ingresa una contraseña!
+            </div>
+            <div *ngIf="passVE.errors.minlength" class="text-danger">
+              ¡Ingresa minimo 7 caracteres!
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <label for="rol">Rol</label>
+          <select class="custom-select" name="rol" [(ngModel)]="cliente.authority" #rol="ngModel" required>
+            <option value="ROLE_ADMIN">Admin</option>
+            <option value="ROLE_USUARIO">Usuario</option>
+          </select>
+          <div *ngIf="rol.invalid && (rol.dirty || rol.touched)">
+            <div *ngIf="rol.errors.required" class="text-danger">
+              ¡Selecciona un rol!
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button role="button" class="btn btn-primary btn-block mt-3" (click)="create()" *ngIf="!cliente.id else elseBlock" [disabled]="!formCliente.form.valid">Crear</button>
+          <ng-template #elseBlock>
+            <button role="button" class="btn btn-primary btn-block mt-3" (click)="update()" [disabled]="!formCliente.form.valid">Actualizar</button>
+          </ng-template>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
